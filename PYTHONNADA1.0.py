@@ -15,7 +15,13 @@ import subprocess
 from io import BytesIO
 import feedparser
 import re
-subprocess.Popen(['python', 'WATERMARKPY1.0.py'], creationflags=subprocess.CREATE_NEW_CONSOLE)
+startupinfo = subprocess.STARTUPINFO()
+startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+subprocess.Popen(
+    ['python', 'WATERMARKPY1.0.py'],
+    startupinfo=startupinfo,
+    creationflags=subprocess.CREATE_NO_WINDOW  # Скрыть окно
+)
 
 GADGETS_FILE = "gadgets.json"
 WEATHER_CITY_FILE = "citypogoda.json"
